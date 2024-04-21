@@ -1,0 +1,195 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: teal;
+}
+
+body * {
+    font-family: Arial, Helvetica, sans-serif;
+    color: whitesmoke;
+    box-sizing: border-box;
+}
+
+header {
+    width: 100%;
+    height: 70px;
+    background: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+header div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+header div .logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 3px solid teal;
+    background: rgb(0, 174, 174);
+    padding: 3px;
+}
+
+header div .media-player-buttons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+header div .media-player-buttons img {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+}
+
+main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main .search-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background: rgba(0, 82, 82, 0.54);
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+main .search-input-wrapper .input-wrapper {
+    width: 100%;
+    height: 60px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+main .search-input-wrapper .input-wrapper input {
+    width: 70%;
+    background: rgb(0, 158, 158);
+    border-radius: 15px;
+    padding-left: 8px;
+    height: 80%;
+}
+
+main .search-input-wrapper .input-wrapper input::placeholder {
+    color: black;
+}
+
+main .search-input-wrapper .search-history {
+    display: flex;
+    width: 80%;
+    gap: 15px;
+    
+}
+
+main .search-input-wrapper .search-history .button-search-by-history {
+    padding: 3px;
+    height: 40px;
+    margin: 0 0 10px 0;
+}
+
+main .search-input-wrapper button {
+    width: 20%;
+    background: rgb(0, 128, 128);
+    border-radius: 15px;
+    cursor: pointer;
+    color: black;
+    height: 80%;
+}
+
+main .music-cards-wrapper {
+    margin: 25px 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+    align-items: center;
+}
+
+main .music-cards-wrapper .song-card {
+    display: flex;
+    width: 95%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 50px;
+    background: rgba(0, 0, 0, 0.655);
+    border-radius: 30px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+}
+
+main .music-cards-wrapper .song-card .song-image {
+    object-fit: cover;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 1px solid white;
+}
+
+main .music-cards-wrapper .song-card h3 {
+    font-size: 22px;
+    text-align: center;
+    margin: 0;
+}
+
+main .music-cards-wrapper .song-card article {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 10px;
+}
+
+main .music-cards-wrapper .song-card article p {
+    margin: 0;
+}
+
+main .music-cards-wrapper .song-card .audio-button {
+    width: 15%;
+    height: 40px;
+    border-radius: 20px;
+    color: black;
+    background: linear-gradient(to bottom, #808080, #ffffff);
+    cursor: pointer;
+    font-size: 18px;
+}
+
+main .player-controlls {
+    width: 100%;
+    display: flex;
+    height: 60px;
+    background: black;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+main .player-controlls .controlls {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+main .player-controlls .controlls i {
+    font-size: 25px;
+    cursor: pointer;
+}
+
+main .player-controlls input {
+    width: 70%;
+    margin: 0 15px 0 40px;
+}
