@@ -5,6 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
         <link rel="stylesheet" href="style.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        />
+        <link rel="stylesheet" href="./responsive.css">
     </head>
     <body>
         <audio id="audio" src=""></audio>
@@ -18,9 +23,21 @@
                 />
                 <h3 id="current-song-name"></h3>
                 <section class="media-player-buttons">
-                    <img src="./image/svg/mediaPlayerButtons/previousButton.svg" id="previous-btn" alt="Previous" />
-                    <img src="./image/svg/mediaPlayerButtons/stopButton.svg" id="play-btn" alt="Play or Stop" />
-                    <img src="./image/svg/mediaPlayerButtons/nextButton.svg" id="next-btn" alt="Next" />
+                    <img
+                        src="./image/svg/mediaPlayerButtons/previousButton.svg"
+                        id="previous-btn"
+                        alt="Previous"
+                    />
+                    <img
+                        src="./image/svg/mediaPlayerButtons/stopButton.svg"
+                        id="play-btn"
+                        alt="Play or Stop"
+                    />
+                    <img
+                        src="./image/svg/mediaPlayerButtons/nextButton.svg"
+                        id="next-btn"
+                        alt="Next"
+                    />
                 </section>
                 <input
                     type="range"
@@ -37,15 +54,45 @@
 
         <main>
             <div class="search-input-wrapper">
-                <input
+                <section class="input-wrapper">
+                    <input
                     type="text"
                     id="search-input"
                     placeholder="Enter Group Name"
                 />
                 <button type="button" id="search-button">Search Song</button>
+                </section>
+                <section class="search-history" id="search-from-history-by-name"></section>
             </div>
             <div class="music-cards-wrapper"></div>
+            <section class="player-controlls">
+                <div class="controlls">
+                    <i class="fas fa-chevron-left" id="prev-song-button"></i>
+                    <i class="fas fa-play" id="play-stop-button"></i>
+                    <i class="fas fa-chevron-right" id="next-song-button"></i>
+                </div>
+
+                <input
+                    type="range"
+                    id="player-progress"
+                    min="0"
+                    step="1"
+                    value="0"
+                />
+                <h4 id="player-progress-time">00:00</h4>
+            </section>
         </main>
+
+        <footer>
+            <h3 id="responsive-current-song-name"></h3>
+            
+            <section class="copyright">
+                <img src="./image/svg/copyright.svg" alt="copyright">
+                <span class="copyrights-date">2015-2024</span>
+            </section>
+            
+            <h4>Kozeychuk Eduard Yurievich</h4>
+        </footer>
 
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="./main.js"></script>

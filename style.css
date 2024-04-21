@@ -57,18 +57,26 @@ main {
 }
 
 main .search-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background: rgba(0, 82, 82, 0.54);
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+main .search-input-wrapper .input-wrapper {
     width: 100%;
     height: 60px;
     padding: 10px;
-    background: rgba(0, 82, 82, 0.54);
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
 }
 
-main .search-input-wrapper input {
+main .search-input-wrapper .input-wrapper input {
     width: 70%;
     background: rgb(0, 158, 158);
     border-radius: 15px;
@@ -76,8 +84,20 @@ main .search-input-wrapper input {
     height: 80%;
 }
 
-main .search-input-wrapper input::placeholder {
+main .search-input-wrapper .input-wrapper input::placeholder {
     color: black;
+}
+
+main .search-input-wrapper .search-history {
+    display: flex;
+    width: 80%;
+    gap: 15px;
+}
+
+main .search-input-wrapper .search-history .button-search-by-history {
+    padding: 3px;
+    height: 40px;
+    margin: 0 0 10px 0;
 }
 
 main .search-input-wrapper button {
@@ -143,4 +163,63 @@ main .music-cards-wrapper .song-card .audio-button {
     background: linear-gradient(to bottom, #808080, #ffffff);
     cursor: pointer;
     font-size: 18px;
+}
+
+main .player-controlls {
+    width: 100%;
+    display: flex;
+    height: 60px;
+    background: black;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 40px;
+}
+
+main .player-controlls .controlls {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+main .player-controlls .controlls i {
+    font-size: 25px;
+    cursor: pointer;
+}
+
+main .player-controlls input {
+    width: 70%;
+    margin: 0 15px 0 40px;
+}
+
+footer {
+    height: 40px;
+    width: 100%;
+    background: black;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px 10px 40px;
+}
+
+footer .copyright {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer .copyright img {
+    width: 20px;
+    height: 20px;
+}
+
+footer h3 {
+    display: none;
+    margin: 0;
+}
+
+footer h4 {
+    margin: 0;
 }
