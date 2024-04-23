@@ -175,6 +175,15 @@ class SearchHistory {
 
     addToHistory(request) {
         let history = this.getHistory();
+<<<<<<< HEAD
+=======
+
+        if(history.includes(request)) {
+            history = history.filter((prevRequest) => prevRequest !== request)
+        }
+
+        history.push(request.toLowerCase());
+>>>>>>> 09eb754 (search history buttons max-six and revers search artist name)
 
         if (history.includes(request)) {
             history = history.filter((prevRequest) => prevRequest !== request);
@@ -196,8 +205,11 @@ class SearchHistory {
 
         let maxButtonsToShow = 0;
 
+<<<<<<< HEAD
         innerWidth < 450 ? maxButtonsToShow = 3 : maxButtonsToShow = 6;
  
+=======
+>>>>>>> 09eb754 (search history buttons max-six and revers search artist name)
         // Перемещаем последние выбранные элементы в конец массива
         const lastTitles = getHistory.slice(-maxButtonsToShow);
         // console.log(lastTitles);
