@@ -162,8 +162,13 @@ class SearchHistory {
     }
 
     addToHistory(request) {
-        const history = this.getHistory();
-        history.push(request);
+        let history = this.getHistory();
+
+        if(history.includes(request)) {
+            history = history.filter((prevRequest) => prevRequest !== request)
+        }
+
+        history.push(request.toLowerCase());
 
         const newHistory = Array.from(new Set(history));
         localStorage.setItem("history", JSON.stringify(newHistory));
@@ -181,18 +186,18 @@ class SearchHistory {
 
         const maxButtonsToShow = 6;
 
-        // Перемещаем последние выбранные элементы в конец массива ???
+        // Перемещаем последние выбранные элементы в конец массива
         const lastTitles = getHistory.slice(-maxButtonsToShow);
-        console.log(lastTitles);
-        lastTitles.map((title) => {
-            const index = getHistory.indexOf(title);
-            if (index !== -1) {
-                getHistory.splice(index, 1);
-                getHistory.push(title);
-            }
+        // console.log(lastTitles);
+        // lastTitles.map((title) => {
+        //     const index = getHistory.indexOf(title);
+        //     if (index !== -1) {
+        //         getHistory.splice(index, 1);
+        //         getHistory.push(title);
+        //     }
 
-            return lastTitles;
-        });
+        //     return lastTitles;
+        // });
 
         lastTitles.forEach((title) => {
             const buttonSearchByHistory = createButton(title);
