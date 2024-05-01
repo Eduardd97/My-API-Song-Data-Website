@@ -1,0 +1,52 @@
+@media (max-width: 900px) {
+    main .music-cards-wrapper .song-card {
+        flex-direction: column;
+        width: auto;
+        height: auto;
+    }
+
+    main .music-cards-wrapper .song-card h3 {
+        margin: 15px 0 10px 0;
+        font-size: 30px;
+    }
+
+    main .music-cards-wrapper .song-card article {
+        margin: 20px 0 20px 0;
+        width: 100%;
+        font-size: 18px;
+    }
+
+    main .music-cards-wrapper .song-card .audio-button {
+        width: 30%;
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 450px) {
+    main .search-input-wrapper button{
+        width: 35%;
+    }
+
+    header h3 {
+        display: none;
+    }
+
+    main .player-controlls {
+        bottom: 110px;
+    }
+
+    main .player-controlls input {
+        width: 35%;
+    }
+
+    footer {
+        flex-direction: column;
+        height: 110px;
+        gap: 15px;
+        padding: 10px 0 10px 0;
+    }
+
+    footer h3 {
+        display: flex;
+    }
+}

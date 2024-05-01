@@ -51,6 +51,10 @@ const searchInput = document.querySelector("#search-input");
 const searchButton = document.querySelector("#search-button");
 const songsCardsWrapper = document.querySelector(".music-cards-wrapper");
 const currentSongName = document.querySelector("#current-song-name");
+const positionPlayerControlls = document.querySelector(".player-controlls");
+const responsiveCurrentSongName = document.querySelector(
+    "#responsive-current-song-name"
+);
 const volumeSlider = document.getElementById("volumeSlider");
 
 const mediaPlayerButtons = {
@@ -136,6 +140,8 @@ class Views {
             audio.load();
 
             Player.controlls.play.classList.replace("fa-play", "fa-pause");
+            mediaPlayerButtons.playButton.src =
+                "./image/svg/mediaPlayerButtons/pauseButton.svg";
             audio.play();
 
             views.updateCurrentSongName(songData);
@@ -148,9 +154,15 @@ class Views {
     }
 
     updateCurrentSongName(songData) {
-        currentSongName.textContent = `${songData.title} (${getSongDuration(
-            songData.duration
-        )})`;
+        if (innerWidth < 450) {
+            responsiveCurrentSongName.textContent = `${
+                songData.title
+            } (${getSongDuration(songData.duration)})`;
+        } else {
+            currentSongName.textContent = `${songData.title} (${getSongDuration(
+                songData.duration
+            )})`;
+        }
     }
 }
 
@@ -164,18 +176,16 @@ class SearchHistory {
     addToHistory(request) {
         let history = this.getHistory();
 
-        if(history.includes(request)) {
-            history = history.filter((prevRequest) => prevRequest !== request)
+        if (history.includes(request)) {
+            history = history.filter((prevRequest) => prevRequest !== request);
         }
 
         history.push(request.toLowerCase());
 
-        const newHistory = Array.from(new Set(history));
-        localStorage.setItem("history", JSON.stringify(newHistory));
+        localStorage.setItem("history", JSON.stringify(history));
     }
 
     renderHistryBySearch() {
-        // 2. Завдання: додайте кнопки для історії пошуку з іменами виконавців що вже шукалися (див. клас SearchHistory)
         const searchFromHistoryByName = document.getElementById(
             "search-from-history-by-name"
         );
@@ -184,8 +194,10 @@ class SearchHistory {
 
         const getHistory = this.getHistory();
 
-        const maxButtonsToShow = 6;
+        let maxButtonsToShow = 0;
 
+        innerWidth < 450 ? maxButtonsToShow = 3 : maxButtonsToShow = 6;
+ 
         // Перемещаем последние выбранные элементы в конец массива
         const lastTitles = getHistory.slice(-maxButtonsToShow);
         // console.log(lastTitles);
@@ -203,8 +215,6 @@ class SearchHistory {
             const buttonSearchByHistory = createButton(title);
             searchFromHistoryByName.appendChild(buttonSearchByHistory);
         });
-
-        // 3. На натискання на кнопку елемента історії пошук відбувається моментально за тим запитом що був обраний
 
         function createButton(songTitle) {
             const buttonSearchByHistory = document.createElement("button");
@@ -303,23 +313,23 @@ class Player {
         progresTimer: document.getElementById("player-progress-time"),
     };
 
-    constructor(mediaPlayerButtons, parentSongName, currentSongIndex = 0) {
+    constructor(
+        mediaPlayerButtons,
+        parentSongName,
+        responsiveParentSongName,
+        currentSongIndex = 0
+    ) {
         this.currentSongIndex = currentSongIndex;
         this.mediaPlayerButtons = mediaPlayerButtons;
         this.parentSongName = parentSongName;
+        this.responsiveParentSongName = responsiveParentSongName;
 
         Player.controlls.next.onclick = () => {
             this.nextSong();
-            this.parentSongName.textContent = `${
-                songs[currentSongIndex].title
-            } (${getSongDuration(songs[currentSongIndex].duration)})`;
         };
 
         Player.controlls.prev.onclick = () => {
             this.prevSong();
-            this.parentSongName.textContent = `${
-                songs[currentSongIndex].title
-            } (${getSongDuration(songs[currentSongIndex].duration)})`;
         };
 
         Player.controlls.play.onclick = () => {
@@ -327,9 +337,15 @@ class Player {
                 this.stop();
             } else {
                 audio.src = songs[this.currentSongIndex].preview;
-                this.parentSongName.textContent = `${
-                    songs[currentSongIndex].title
-                } (${getSongDuration(songs[currentSongIndex].duration)})`;
+                if (innerWidth < 450) {
+                    this.responsiveParentSongName.textContent = `${
+                        songs[this.currentSongIndex].title
+                    } (${getSongDuration(songs[this.currentSongIndex].duration)})`;
+                } else {
+                    this.parentSongName.textContent = `${
+                        songs[this.currentSongIndex].title
+                    } (${getSongDuration(songs[this.currentSongIndex].duration)})`;
+                }
                 this.play();
             }
         };
@@ -366,6 +382,16 @@ class Player {
             audio.src =
                 songs[this.currentSongIndex]?.preview || songs[0].preview;
             this.play();
+
+            if (innerWidth < 450) {
+                this.responsiveParentSongName.textContent = `${
+                    songs[this.currentSongIndex].title
+                } (${getSongDuration(songs[this.currentSongIndex].duration)})`;
+            } else {
+                this.parentSongName.textContent = `${
+                    songs[this.currentSongIndex].title
+                } (${getSongDuration(songs[this.currentSongIndex].duration)})`;
+            }
         }
     }
     nextSong() {
@@ -375,18 +401,25 @@ class Player {
             audio.src =
                 songs[this.currentSongIndex]?.preview || songs[0].preview;
             this.play();
+
+            if (innerWidth < 450) {
+                this.responsiveParentSongName.textContent = `${
+                    songs[this.currentSongIndex].title
+                } (${getSongDuration(songs[this.currentSongIndex].duration)})`;
+            } else {
+                this.parentSongName.textContent = `${
+                    songs[this.currentSongIndex].title
+                } (${getSongDuration(songs[this.currentSongIndex].duration)})`;
+            }
         }
     }
 }
 
-const player = new Player(mediaPlayerButtons, currentSongName);
-
-// Завдання: реалізуйте управління плеєром
-// Тільки кнопки: вперед, назад, стоп, старт
-
-// Кнопки мають завантажувати наступну/попередню пісню
-
-// Якщо пісень немає - кнопки ігнорують натискання
+const player = new Player(
+    mediaPlayerButtons,
+    currentSongName,
+    responsiveCurrentSongName
+);
 
 function mediaPlayer(currentMediaIndex = 0) {
     mediaPlayerButtons.playButton.onclick = () => {
@@ -402,9 +435,15 @@ function mediaPlayer(currentMediaIndex = 0) {
                 Player.controlls.play.classList.replace("fa-play", "fa-pause");
                 audio.src = songs[currentMediaIndex].preview;
                 audio.play();
-                currentSongName.textContent = `${
-                    songs[currentMediaIndex].title
-                } (${getSongDuration(songs[currentMediaIndex].duration)})`;
+                if (innerWidth < 450) {
+                    responsiveCurrentSongName.textContent = `${
+                        songs[currentMediaIndex].title
+                    } (${getSongDuration(songs[currentMediaIndex].duration)})`;
+                } else {
+                    currentSongName.textContent = `${
+                        songs[currentMediaIndex].title
+                    } (${getSongDuration(songs[currentMediaIndex].duration)})`;
+                }
             }
         }
     };
@@ -413,28 +452,43 @@ function mediaPlayer(currentMediaIndex = 0) {
         if (songs.length) {
             currentMediaIndex -= 1;
             audio.src = songs[currentMediaIndex].preview;
-            audio.play();
-            if (audio.played) {
+            if (!audio.paused) {
                 mediaPlayerButtons.playButton.src =
                     "./image/svg/mediaPlayerButtons/playButton.svg";
+                Player.controlls.play.classList.replace("fa-pause", "fa-play");
             }
-            currentSongName.textContent = `${
-                songs[currentMediaIndex].title
-            } (${getSongDuration(songs[currentMediaIndex].duration)})`;
+            audio.play();
+            if (innerWidth < 450) {
+                responsiveCurrentSongName.textContent = `${
+                    songs[currentMediaIndex].title
+                } (${getSongDuration(songs[currentMediaIndex].duration)})`;
+            } else {
+                currentSongName.textContent = `${
+                    songs[currentMediaIndex].title
+                } (${getSongDuration(songs[currentMediaIndex].duration)})`;
+            }
         }
     };
     mediaPlayerButtons.nextButton.onclick = () => {
         if (songs.length) {
             currentMediaIndex += 1;
             audio.src = songs[currentMediaIndex].preview;
-            audio.play();
-            if (audio.played) {
+            if (!audio.paused) {
                 mediaPlayerButtons.playButton.src =
                     "./image/svg/mediaPlayerButtons/playButton.svg";
+                Player.controlls.play.classList.replace("fa-pause", "fa-play");
             }
-            currentSongName.textContent = `${
-                songs[currentMediaIndex].title
-            } (${getSongDuration(songs[currentMediaIndex].duration)})`;
+            audio.play();
+            if (innerWidth < 450) {
+                responsiveCurrentSongName.textContent = `${
+                    songs[currentMediaIndex].title
+                } (${getSongDuration(songs[currentMediaIndex].duration)})`;
+            } else {
+                currentSongName.textContent = `${
+                    songs[currentMediaIndex].title
+                } (${getSongDuration(songs[currentMediaIndex].duration)})`;
+            }
+
         }
     };
 }

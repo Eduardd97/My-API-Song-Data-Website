@@ -92,7 +92,6 @@ main .search-input-wrapper .search-history {
     display: flex;
     width: 80%;
     gap: 15px;
-    
 }
 
 main .search-input-wrapper .search-history .button-search-by-history {
@@ -174,8 +173,7 @@ main .player-controlls {
     justify-content: center;
     align-items: center;
     position: fixed;
-    bottom: 0;
-    left: 0;
+    bottom: 40px;
 }
 
 main .player-controlls .controlls {
@@ -192,4 +190,36 @@ main .player-controlls .controlls i {
 main .player-controlls input {
     width: 70%;
     margin: 0 15px 0 40px;
+}
+
+footer {
+    height: 40px;
+    width: 100%;
+    background: black;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px 10px 40px;
+}
+
+footer .copyright {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer .copyright img {
+    width: 20px;
+    height: 20px;
+}
+
+footer h3 {
+    display: none;
+    margin: 0;
+}
+
+footer h4 {
+    margin: 0;
 }
