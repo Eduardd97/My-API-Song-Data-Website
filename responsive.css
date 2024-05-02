@@ -22,12 +22,20 @@
 }
 
 @media (max-width: 450px) {
+    header div input {
+        width: 35%;
+    }
+
+    main .music-cards-wrapper .song-card article p:last-of-type {
+        display: none;
+    }
+
     main .search-input-wrapper button{
         width: 35%;
     }
 
     main .search-input-wrapper .search-history .button-search-by-history {
-        width: 50%;
+        height: auto;
     }
 
     header h3 {
