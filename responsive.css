@@ -1,7 +1,6 @@
 @media (max-width: 900px) {
     main .music-cards-wrapper .song-card {
         flex-direction: column;
-        width: auto;
         height: auto;
     }
 
@@ -25,6 +24,10 @@
 @media (max-width: 450px) {
     main .search-input-wrapper button{
         width: 35%;
+    }
+
+    main .search-input-wrapper .search-history .button-search-by-history {
+        width: 50%;
     }
 
     header h3 {

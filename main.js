@@ -182,7 +182,7 @@ class SearchHistory {
 
         history.push(request.toLowerCase());
 
-        localStorage.setItem("history", JSON.stringify(history));
+        localStorage.setItem("history", JSON.stringify(history)); 
     }
 
     renderHistryBySearch() {
@@ -199,7 +199,10 @@ class SearchHistory {
         innerWidth < 450 ? maxButtonsToShow = 3 : maxButtonsToShow = 6;
  
         // Перемещаем последние выбранные элементы в конец массива
+        // const newHistory = Array.from(new Set(history));
+        // localStorage.setItem("history", JSON.stringify(newHistory));
         const lastTitles = getHistory.slice(-maxButtonsToShow);
+        const newLastTitle = Array.from(new Set(lastTitles));
         // console.log(lastTitles);
         // lastTitles.map((title) => {
         //     const index = getHistory.indexOf(title);
@@ -211,7 +214,7 @@ class SearchHistory {
         //     return lastTitles;
         // });
 
-        lastTitles.forEach((title) => {
+        newLastTitle.forEach((title) => {
             const buttonSearchByHistory = createButton(title);
             searchFromHistoryByName.appendChild(buttonSearchByHistory);
         });
